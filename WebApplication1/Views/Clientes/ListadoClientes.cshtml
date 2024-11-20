@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebApplication1.Models.Clientes>
+
+@{
+    ViewBag.Title = "ListadoClientes";
+    var grid = new WebGrid(
+            source: Model,
+            defaultSort: "Pais",
+            rowsPerPage: 15
+        );
+}
+
+<h2>Paginado de Clientes</h2>
+
+<div>
+    @grid.GetHtml(
+        tableStyle: "table",
+        mode: WebGridPagerModes.All,
+        firstText: "<< Primera página", lastText: "Última página >>",
+        previousText: "< Página anterior", nextText: "Siguiente página >",
+        columns: grid.Columns(
+                grid.Column("IdCliente"),
+                grid.Column("NombreCliente"),
+                grid.Column("Direccion"),
+                grid.Column("Telefono"),
+                grid.Column("Pais")
+            )
+    )
+</div>
